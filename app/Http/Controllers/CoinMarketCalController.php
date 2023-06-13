@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Http;
 use Symfony\Component\DomCrawler\Crawler;
 
@@ -17,26 +18,23 @@ class CoinMarketCalController extends Controller
 
         $crawler = new Crawler($html);
 
-        $newsElements = $crawler->filter('.card__body');
+        $today = Carbon::now()->format('j F Y');
 
-        $newsList = [];
-        $title = '';
-        $description = '';
-        $date = '';
-        $newsElements->each(function (Crawler $node) use (&$newsList) {
-            $title = $node->filter('.card__title')->text();
-            $date = $node->filter('.card__date')->text();
-            $description = $node->filter('.box .card__description')->text();
+        $listings = $crawler->filter('.list-card .card__body')->each(function (Crawler $node) {
+            $card__date = $node->filter('.card__date')->text();
+            $card__title = $node->filter('.card__title')->text();
+            $link__detail = $node->filter('.link-detail')->text();
+            $card__description = $node->filter('.card__description')->text();
 
-            if (strpos($title, 'Listing') !== false && strpos($description, '/USDT') !== false) {
-                $newsList[] = [
-                    'title' => $title,
-                    'date' => $date,
-                    'description' => $description,
-                ];
-            }
+            return [
+                'card__date' => $card__date,
+                'card__title' => $card__title,
+                'link__detail' => $link__detail,
+                'card__description' => $card__description
+            ];
+
         });
-        return view('listing', ['title'=>$title, 'listings'=>$newsList]);
+        return view('listing', ['listings'=>$listings]);
     }
 
 }
