@@ -10,6 +10,7 @@ use App\Http\Controllers\PriceController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ExchangeController;
+use App\Http\Controllers\DashboardController;
 
 // Auth
 //Route::get('/auth',      [AuthController::class, 'showAuthPage'])->name('showAuthPage');
@@ -38,3 +39,8 @@ Route::get('/order',              [OrderController::class, 'index']);
 Route::get('/price',              [PriceController::class, 'index']);
 //Route::get('/get-current-price',     [CoinMarketCalController::class, 'mexc']);
 //Route::get('/balance',               [CoinMarketCalController::class, 'getBalance']);
+
+
+Route::get('/dashboard',              [DashboardController::class, 'index']);
+
+
