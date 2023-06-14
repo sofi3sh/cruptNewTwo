@@ -18,23 +18,24 @@ class CoinMarketCalController extends Controller
 
         $crawler = new Crawler($html);
 
-        $today = Carbon::now()->format('j F Y');
-
         $listings = $crawler->filter('.list-card .card__body')->each(function (Crawler $node) {
             $card__date = $node->filter('.card__date')->text();
             $card__title = $node->filter('.card__title')->text();
             $link__detail = $node->filter('.link-detail')->text();
             $card__description = $node->filter('.card__description')->text();
 
-            return [
-                'card__date' => $card__date,
-                'card__title' => $card__title,
-                'link__detail' => $link__detail,
-                'card__description' => $card__description
-            ];
-
+            if (strpos($card__title, 'Listing') !== false && strpos($card__description, '/USDT') !== false) {
+                return [
+                    'card__date' => $card__date,
+                    'card__title' => $card__title,
+                    'link__detail' => $link__detail,
+                    'card__description' => $card__description
+                ];
+            }
+            return null;
         });
-        return view('listing', ['listings'=>$listings]);
+        $listings = array_filter($listings); // Видалити елементи зі значенням null
+        return view('listing', ['listings' => $listings]);
     }
 
 }
