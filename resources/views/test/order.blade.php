@@ -1,6 +1,3 @@
-
-
-
-
-
-123
+@php
+var_dump($acount)
+@endphp
