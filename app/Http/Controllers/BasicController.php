@@ -7,6 +7,7 @@ use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
+
 class BasicController extends Controller
 {
     protected $client;
@@ -96,3 +97,22 @@ class BasicController extends Controller
 
     }
 }
+
+
+//use GuzzleHttp\Client;
+//
+//$client = new Client();
+//
+//$response = $client->get('https://api.mexc.com/api/v3/account', [
+//    'headers' => [
+//        'Permission' => 'SPOT_ACCOUNT_READ',
+//        'Content-Type' => 'application/json',
+//        'X-MXC-APIKEY' => 'Ваш API-ключ',
+//        'X-MXC-SIGNATURE' => 'Ваш підпис',
+//        'X-MXC-TIMESTAMP' => 'Час в мілісекундах',
+//    ],
+//]);
+//
+//$data = json_decode($response->getBody(), true);
+
+//https://api.mexc.com/api/v3/account?SPOT_ACCOUNT_READ={{mx0vglFextYa57k1Mo}}
