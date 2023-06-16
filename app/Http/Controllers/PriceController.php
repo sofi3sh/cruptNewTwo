@@ -29,26 +29,8 @@ class PriceController extends BasicController
             // Обробка помилки, якщо статус відповіді не 200
             // echo 'Не вдалося отримати ціну Bitcoin';
         }
-        $deposit = 7700000;
-        $max_deposit =  $deposit*0.005; // 0.5% 38500
-        $price = $bitcoinPrice;
-        $price_close_profit =  $price*1.005; // 0.5% profit
-        $price_close_loss =  $price*1.002; // 0.2% loss
-        $voleum = '';  // x
-        $voleum = $max_deposit/$price; //1,49
-        $profit = $max_deposit*0.005 ; // profit
-        $loss = $max_deposit*0.002;
-        $result = [
-            'deposit'=>$deposit,
-            'max_deposit'=>$max_deposit,
-            'price_close_profit'=>$price_close_profit,
-            'price_close_loss'=>$price_close_loss,
-            'price'=>$price,
-            'profit'=>$profit,
-            'loss'=>$loss,
-            'voleum'=>$voleum,
-        ];
 
-        return view('test.price', ['result'=>$result, 'bitcoinPrice'=>$bitcoinPrice]);
+
+        return view('test.price', ['bitcoinPrice'=>$bitcoinPrice]);
     }
 }
