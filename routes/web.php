@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ListingController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PriceController;
+use App\Http\Controllers\TreidController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ExchangeController;
@@ -37,9 +38,7 @@ Route::get('/user-profile',      [UserController::class, 'userProfile'])        
 Route::get('/listings',              [CoinMarketCalController::class, 'index']);
 Route::get('/order',              [OrderController::class, 'index']);
 Route::get('/price',              [PriceController::class, 'index']);
-//Route::get('/get-current-price',     [CoinMarketCalController::class, 'mexc']);
-//Route::get('/balance',               [CoinMarketCalController::class, 'getBalance']);
-
+Route::get('/ordertest',              [TreidController::class, 'index']);
 
 Route::get('/dashboard',              [DashboardController::class, 'index']);
 
